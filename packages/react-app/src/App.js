@@ -38,6 +38,7 @@ function WalletButton({ provider, loadWeb3Modal }) {
 }
 
 function App() {
+  //const { loading, error, data } = useQuery(GET_TRANSFERS, {variables: {epochTime},});
   const { loading, error, data } = useQuery(GET_TRANSFERS);
   const [provider, setProvider] = useState();
 
@@ -55,8 +56,9 @@ function App() {
   }, [loadWeb3Modal]);
 
   React.useEffect(() => {
-    if (!loading && !error && data && data.transfers) {
-      console.log({ transfers: data.transfers });
+    if (!loading && !error && data && data.priceHistoryDailies) {
+      console.log({ priceHistoryDailies: data.priceHistoryDailies });
+      //historicalPrices();
     }
   }, [loading, error, data]);
 
@@ -71,7 +73,7 @@ function App() {
           Edit <code>packages/react-app/src/App.js</code> and save to reload.
         </p>
         {/* Remove the "hidden" prop and open the JavaScript console in the browser to see what this function does */}
-        <Button hidden onClick={() => readOnChainData()}>
+        <Button  onClick={() => readOnChainData()}>
           Read On-Chain Balance
         </Button>
         <Link
